@@ -32,22 +32,25 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+from decimal import Decimal
+
 class MemberProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    height = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    height = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)  # cm
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)  # kg
     bmi = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     goal = models.TextField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def calculate_bmi(self):
-        if self.height and self.weight:
-            return round(float(self.weight) / (float(self.height) ** 2), 2)
+        if self.height and self.weight and self.height > 0:  # Đảm bảo height > 0
+            height_m = Decimal(self.height) / Decimal('100')  # Chuyển cm thành m
+            bmi = Decimal(self.weight) / (height_m ** 2)
+            return round(bmi, 2)
         return None
 
     def save(self, *args, **kwargs):
-        self.bmi = self.calculate_bmi()  # Cập nhật BMI trước khi lưu
+        self.bmi = self.calculate_bmi()
         super().save(*args, **kwargs)
-
     def __str__(self):
         return f"Profile of {self.user.username}"
