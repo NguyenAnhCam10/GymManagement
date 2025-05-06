@@ -1,5 +1,5 @@
 # apps/users/views.py
-from collections.abc import generator
+
 
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated

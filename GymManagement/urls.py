@@ -2,6 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from apps.users.views import UserViewSet, MemberProfileViewSet
+from apps.schedules.views import ScheduleViewSet
+from apps.packages.views import PackageViewSet, MemberPackageViewSet
+from apps.reviews.views import ReviewViewSet
+from apps.progress.views import ProgressViewSet
+from apps.notifications.views import NotificationViewSet
+
 
 # Swagger imports
 from rest_framework import permissions
@@ -12,6 +18,13 @@ from drf_yasg import openapi
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'member-profiles', MemberProfileViewSet)
+router.register(r'packages', PackageViewSet)
+router.register(r'member-packages', MemberPackageViewSet)
+router.register(r'schedules', ScheduleViewSet)
+router.register(r'reviews', ReviewViewSet)
+router.register(r'progress', ProgressViewSet)
+router.register(r'notifications', NotificationViewSet)
+
 
 # Swagger config
 schema_view = get_schema_view(
