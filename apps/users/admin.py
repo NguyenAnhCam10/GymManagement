@@ -41,3 +41,4 @@ class MemberProfileAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 admin.site.register(User, UserAdmin)
 admin.site.register(MemberProfile, MemberProfileAdmin)
+
