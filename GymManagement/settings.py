@@ -37,14 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.users.apps.UsersConfig',
-    'apps.schedules.apps.SchedulesConfig',
-    'apps.reviews.apps.ReviewsConfig',
-    'apps.progress.apps.ProgressConfig',
-    'apps.payments.apps.PaymentsConfig',
-    'apps.packages.apps.PackagesConfig',
-    'apps.notifications.apps.NotificationsConfig',
-    'apps.chats.apps.ChatsConfig',
+    'GymApp.apps.GymAppConfig',
+  #  'apps.schedules.apps.SchedulesConfig',
+ #   'apps.reviews.apps.ReviewsConfig',
+  ## 'apps.payments.apps.PaymentsConfig',
+   ## 'apps.notifications.apps.NotificationsConfig',
+ #   'apps.chats.apps.ChatsConfig',
     'rest_framework',
     'oauth2_provider',
     'drf_yasg',
@@ -53,7 +51,7 @@ INSTALLED_APPS = [
 
 ]
 # Chỉ định model User tùy chỉnh
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'GymApp.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -92,7 +90,7 @@ WSGI_APPLICATION = 'GymManagement.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gym_db',
+        'NAME': 'gymdb',
         'USER': 'root',
         'PASSWORD': '123456789',
         'HOST': ''  # mặc định localhost
